@@ -16,7 +16,7 @@ const profileFallback = `data:image/svg+xml;utf8,${encodeURIComponent(`
     <rect width="600" height="680" rx="64" fill="url(#bg)"/>
     <circle cx="300" cy="250" r="108" fill="#2b241f" stroke="url(#accent)" stroke-width="8"/>
     <path d="M145 555c26-102 96-155 155-155s129 53 155 155" fill="#2b241f" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
-    <text x="50%" y="620" text-anchor="middle" fill="#f0ece4" font-size="30" font-family="DM Sans, Arial, sans-serif">Add src/assets/profile.jpg</text>
+    <text x="50%" y="620" text-anchor="middle" fill="#f0ece4" font-size="30" font-family="DM Sans, Arial, sans-serif">Add public/profile.jpg</text>
   </svg>
 `)}`;
 
