@@ -1,5 +1,7 @@
 import { skillGroups } from '../data/portfolio';
 import useInView from '../hooks/useInView';
+import { revealClass, staggerDelay } from '../utils/animation';
+import SectionHeading from './SectionHeading';
 
 const Skills = () => {
   const [ref, isInView] = useInView();
@@ -7,17 +9,14 @@ const Skills = () => {
   return (
     <section id="skills" className="section section-separated" ref={ref}>
       <div className="container">
-        <div className={`section-heading reveal ${isInView ? 'is-visible' : ''}`}>
-          <h2 className="section-title gradient-text">Skills &amp; Technologies</h2>
-          <span className="section-line" />
-        </div>
+        <SectionHeading title="Skills &amp; Technologies" isInView={isInView} />
 
         <div className="skills-groups">
           {skillGroups.map((group, groupIndex) => (
             <div
               key={group.category}
-              className={`skill-group reveal ${isInView ? 'is-visible' : ''}`}
-              style={{ transitionDelay: `${groupIndex * 120}ms` }}
+              className={`skill-group ${revealClass(isInView)}`}
+              style={staggerDelay(groupIndex, 120)}
             >
               <h3>{group.category}</h3>
               <div className="skill-badges">
@@ -25,7 +24,7 @@ const Skills = () => {
                   <span
                     className="skill-badge"
                     key={skill}
-                    style={{ transitionDelay: `${groupIndex * 120 + skillIndex * 60}ms` }}
+                    style={staggerDelay(groupIndex * 2 + skillIndex, 60)}
                   >
                     <span className="skill-badge-dot" />
                     {skill}

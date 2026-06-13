@@ -1,5 +1,7 @@
 import { projects } from '../data/portfolio';
 import useInView from '../hooks/useInView';
+import { revealClass, staggerDelay } from '../utils/animation';
+import SectionHeading from './SectionHeading';
 
 const Projects = () => {
   const [ref, isInView] = useInView();
@@ -7,17 +9,14 @@ const Projects = () => {
   return (
     <section id="projects" className="section section-separated" ref={ref}>
       <div className="container">
-        <div className={`section-heading reveal ${isInView ? 'is-visible' : ''}`}>
-          <h2 className="section-title gradient-text">Featured Projects</h2>
-          <span className="section-line" />
-        </div>
+        <SectionHeading title="Featured Projects" isInView={isInView} />
 
         <div className="projects-grid">
           {projects.map((project, index) => (
             <article
               key={project.name}
-              className={`project-card reveal ${isInView ? 'is-visible' : ''}`}
-              style={{ transitionDelay: `${index * 140}ms` }}
+              className={`project-card ${revealClass(isInView)}`}
+              style={staggerDelay(index, 140)}
             >
               <div className="project-card-inner">
                 {project.status ? <span className="project-status">{project.status}</span> : null}

@@ -1,17 +1,9 @@
 import { useEffect, useState } from 'react';
+import useScrollFlag from '../hooks/useScrollFlag';
 
 const Navbar = ({ navLinks, activeSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 24);
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const isScrolled = useScrollFlag(24);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : '';
