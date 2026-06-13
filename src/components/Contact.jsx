@@ -4,6 +4,12 @@ import useInView from '../hooks/useInView';
 
 const initialForm = { name: '', email: '', message: '' };
 
+const MAX_NAME = 100;
+const MAX_EMAIL = 254;
+const MAX_MESSAGE = 2000;
+
+const sanitize = (value) => value.replace(/[<>"'/]/g, '');
+
 const Contact = () => {
   const [ref, isInView] = useInView();
   const [formData, setFormData] = useState(initialForm);
@@ -13,12 +19,16 @@ const Contact = () => {
   const validate = () => {
     const nextErrors = {};
     if (!formData.name.trim()) nextErrors.name = 'Please enter your name.';
+    else if (formData.name.length > MAX_NAME) nextErrors.name = `Name must be under ${MAX_NAME} characters.`;
     if (!formData.email.trim()) {
       nextErrors.email = 'Please enter your email.';
+    } else if (formData.email.length > MAX_EMAIL) {
+      nextErrors.email = `Email must be under ${MAX_EMAIL} characters.`;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       nextErrors.email = 'Please enter a valid email address.';
     }
     if (!formData.message.trim()) nextErrors.message = 'Please share a message.';
+    else if (formData.message.length > MAX_MESSAGE) nextErrors.message = `Message must be under ${MAX_MESSAGE} characters.`;
     return nextErrors;
   };
 
@@ -76,9 +86,10 @@ const Contact = () => {
                 type="text"
                 name="name"
                 value={formData.name}
+                maxLength={MAX_NAME}
                 onChange={(event) => {
                   setIsSubmitted(false);
-                  setFormData({ ...formData, name: event.target.value });
+                  setFormData({ ...formData, name: sanitize(event.target.value) });
                 }}
                 placeholder="Your name"
               />
@@ -91,9 +102,10 @@ const Contact = () => {
                 type="email"
                 name="email"
                 value={formData.email}
+                maxLength={MAX_EMAIL}
                 onChange={(event) => {
                   setIsSubmitted(false);
-                  setFormData({ ...formData, email: event.target.value });
+                  setFormData({ ...formData, email: event.target.value.trim() });
                 }}
                 placeholder="your@email.com"
               />
@@ -106,9 +118,10 @@ const Contact = () => {
                 name="message"
                 rows="5"
                 value={formData.message}
+                maxLength={MAX_MESSAGE}
                 onChange={(event) => {
                   setIsSubmitted(false);
-                  setFormData({ ...formData, message: event.target.value });
+                  setFormData({ ...formData, message: sanitize(event.target.value) });
                 }}
                 placeholder="Tell me about your idea, internship opportunity, or collaboration."
               />
