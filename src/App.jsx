@@ -17,6 +17,11 @@ const App = () => {
   const sectionIds = useMemo(() => navLinks.map((item) => item.href.replace('#', '')), []);
 
   useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') {
+      console.warn('[App] IntersectionObserver is not supported; active section detection disabled.');
+      return undefined;
+    }
+
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
     if (!sections.length) return undefined;
