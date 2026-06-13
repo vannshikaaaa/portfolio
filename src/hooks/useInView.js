@@ -9,6 +9,12 @@ const useInView = (options = {}) => {
 
     if (!node) return undefined;
 
+    if (typeof IntersectionObserver === 'undefined') {
+      console.warn('[useInView] IntersectionObserver is not supported; elements will be treated as visible.');
+      setIsInView(true);
+      return undefined;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

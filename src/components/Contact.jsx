@@ -33,9 +33,14 @@ const Contact = () => {
         `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
       );
 
-      window.location.href = `mailto:vanshikaagarwal9500@gmail.com?subject=${subject}&body=${body}`;
-      setIsSubmitted(true);
-      setFormData(initialForm);
+      try {
+        window.location.href = `mailto:vanshikaagarwal9500@gmail.com?subject=${subject}&body=${body}`;
+        setIsSubmitted(true);
+        setFormData(initialForm);
+      } catch (error) {
+        console.error('[Contact] Failed to open mail client:', error);
+        setErrors({ form: 'Unable to open your email client. Please email vanshikaagarwal9500@gmail.com directly.' });
+      }
     }
   };
 
@@ -118,6 +123,8 @@ const Contact = () => {
             <button className="button button-primary" type="submit">
               Send Message
             </button>
+
+            {errors.form ? <p className="error-message">{errors.form}</p> : null}
 
             {isSubmitted ? (
               <p className="success-message">

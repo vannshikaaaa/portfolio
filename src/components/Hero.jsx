@@ -96,6 +96,7 @@ const Hero = () => {
               alt="Portrait of Vanshika Agarwal"
               loading="lazy"
               onError={(event) => {
+                console.warn('[Hero] Profile image failed to load; using fallback.');
                 event.currentTarget.onerror = null;
                 event.currentTarget.src = profileFallback;
               }}
