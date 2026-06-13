@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import useScrollFlag from './hooks/useScrollFlag';
 import './App.css';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -12,7 +13,7 @@ import { navLinks } from './data/portfolio';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('#home');
-  const [showBackToTop, setShowBackToTop] = useState(false);
+  const showBackToTop = useScrollFlag(400);
 
   const sectionIds = useMemo(() => navLinks.map((item) => item.href.replace('#', '')), []);
 
@@ -37,15 +38,6 @@ const App = () => {
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, [sectionIds]);
-
-  useEffect(() => {
-    const handleScroll = () => setShowBackToTop(window.scrollY > 400);
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <>

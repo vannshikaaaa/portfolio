@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { contactInfo } from '../data/portfolio';
 import useInView from '../hooks/useInView';
+import { revealClass } from '../utils/animation';
+import SectionHeading from './SectionHeading';
 
 const initialForm = { name: '', email: '', message: '' };
 
@@ -42,15 +44,13 @@ const Contact = () => {
   return (
     <section id="contact" className="section section-separated" ref={ref}>
       <div className="container contact-shell">
-        <div className={`section-heading reveal ${isInView ? 'is-visible' : ''}`}>
-          <h2 className="section-title gradient-text">Let&apos;s Connect</h2>
-          <span className="section-line" />
-          <p className="section-subtitle">
-            I&apos;m currently open to frontend developer internship opportunities. Feel free to reach out!
-          </p>
-        </div>
+        <SectionHeading
+          title="Let&apos;s Connect"
+          subtitle="I&apos;m currently open to frontend developer internship opportunities. Feel free to reach out!"
+          isInView={isInView}
+        />
 
-        <div className={`contact-card reveal ${isInView ? 'is-visible' : ''}`}>
+        <div className={`contact-card ${revealClass(isInView)}`}>
           <div className="contact-list">
             {contactInfo.map((item) => (
               <a
