@@ -8,7 +8,7 @@ const Navbar = ({ navLinks, activeSection }) => {
     const handleScroll = () => setIsScrolled(window.scrollY > 24);
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -16,8 +16,15 @@ const Navbar = ({ navLinks, activeSection }) => {
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : '';
 
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && isMenuOpen) setIsMenuOpen(false);
+    };
+
+    if (isMenuOpen) document.addEventListener('keydown', handleKeyDown);
+
     return () => {
       document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isMenuOpen]);
 

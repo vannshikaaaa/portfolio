@@ -91,6 +91,18 @@ describe('Navbar', () => {
     expect(header.classList.contains('navbar-scrolled')).toBe(false);
   });
 
+  it('closes menu when Escape key is pressed', async () => {
+    const user = userEvent.setup();
+    render(<Navbar navLinks={testLinks} activeSection="#home" />);
+    const toggle = screen.getByLabelText('Toggle navigation menu');
+
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+
+    await user.keyboard('{Escape}');
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  });
+
   it('sets body overflow hidden when menu is open', async () => {
     const user = userEvent.setup();
     render(<Navbar navLinks={testLinks} activeSection="#home" />);

@@ -92,7 +92,7 @@ const Hero = () => {
           <div className="hero-image-frame">
             <img
               className="hero-image"
-              src="/src/assets/profile.jpg"
+              src="/profile.jpg"
               alt="Portrait of Vanshika Agarwal"
               loading="lazy"
               onError={(event) => {
@@ -101,7 +101,7 @@ const Hero = () => {
               }}
             />
           </div>
-          <p className="hero-image-note">Add your photo in src/assets/profile.jpg for a personal touch.</p>
+          <p className="hero-image-note">Add your photo as public/profile.jpg for a personal touch.</p>
         </div>
       </div>
     </section>

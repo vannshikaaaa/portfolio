@@ -78,6 +78,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={(event) => {
                   setIsSubmitted(false);
+                  setErrors((prev) => ({ ...prev, name: undefined }));
                   setFormData({ ...formData, name: event.target.value });
                 }}
                 placeholder="Your name"
@@ -93,6 +94,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={(event) => {
                   setIsSubmitted(false);
+                  setErrors((prev) => ({ ...prev, email: undefined }));
                   setFormData({ ...formData, email: event.target.value });
                 }}
                 placeholder="your@email.com"
@@ -108,6 +110,7 @@ const Contact = () => {
                 value={formData.message}
                 onChange={(event) => {
                   setIsSubmitted(false);
+                  setErrors((prev) => ({ ...prev, message: undefined }));
                   setFormData({ ...formData, message: event.target.value });
                 }}
                 placeholder="Tell me about your idea, internship opportunity, or collaboration."
