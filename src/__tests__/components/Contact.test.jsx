@@ -104,6 +104,27 @@ describe('Contact', () => {
     expect(screen.queryByText(/Thanks for reaching out/)).not.toBeInTheDocument();
   });
 
+  it('clears field error when user starts typing in that field', async () => {
+    const user = userEvent.setup();
+    render(<Contact />);
+
+    await user.click(screen.getByText('Send Message'));
+    expect(screen.getByText('Please enter your name.')).toBeInTheDocument();
+    expect(screen.getByText('Please enter your email.')).toBeInTheDocument();
+    expect(screen.getByText('Please share a message.')).toBeInTheDocument();
+
+    await user.type(screen.getByPlaceholderText('Your name'), 'A');
+    expect(screen.queryByText('Please enter your name.')).not.toBeInTheDocument();
+    expect(screen.getByText('Please enter your email.')).toBeInTheDocument();
+
+    await user.type(screen.getByPlaceholderText('your@email.com'), 'a');
+    expect(screen.queryByText('Please enter your email.')).not.toBeInTheDocument();
+    expect(screen.getByText('Please share a message.')).toBeInTheDocument();
+
+    await user.type(screen.getByPlaceholderText(/Tell me about your idea/), 'x');
+    expect(screen.queryByText('Please share a message.')).not.toBeInTheDocument();
+  });
+
   it('sets mailto href on valid submission', async () => {
     const user = userEvent.setup();
 

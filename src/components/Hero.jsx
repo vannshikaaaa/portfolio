@@ -16,7 +16,7 @@ const profileFallback = `data:image/svg+xml;utf8,${encodeURIComponent(`
     <rect width="600" height="680" rx="64" fill="url(#bg)"/>
     <circle cx="300" cy="250" r="108" fill="#2b241f" stroke="url(#accent)" stroke-width="8"/>
     <path d="M145 555c26-102 96-155 155-155s129 53 155 155" fill="#2b241f" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
-    <text x="50%" y="620" text-anchor="middle" fill="#f0ece4" font-size="30" font-family="DM Sans, Arial, sans-serif">Add src/assets/profile.jpg</text>
+    <text x="50%" y="620" text-anchor="middle" fill="#f0ece4" font-size="30" font-family="DM Sans, Arial, sans-serif">Add public/profile.jpg</text>
   </svg>
 `)}`;
 
@@ -92,7 +92,7 @@ const Hero = () => {
           <div className="hero-image-frame">
             <img
               className="hero-image"
-              src="/src/assets/profile.jpg"
+              src="/profile.jpg"
               alt="Portrait of Vanshika Agarwal"
               loading="lazy"
               onError={(event) => {
@@ -101,7 +101,7 @@ const Hero = () => {
               }}
             />
           </div>
-          <p className="hero-image-note">Add your photo in src/assets/profile.jpg for a personal touch.</p>
+          <p className="hero-image-note">Add your photo as public/profile.jpg for a personal touch.</p>
         </div>
       </div>
     </section>

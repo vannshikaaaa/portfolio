@@ -101,6 +101,7 @@ a {
   border-radius: 999px;
   border: 1px solid var(--primary);
   font-weight: 600;
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
@@ -203,6 +204,7 @@ a {
   padding: 0;
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .navbar-toggle span {
@@ -689,6 +691,7 @@ a {
   height: 50px;
   border: none;
   border-radius: 50%;
+  cursor: pointer;
   background: linear-gradient(120deg, var(--secondary), var(--primary));
   color: #17110a;
   font-size: 1.2rem;
