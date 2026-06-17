@@ -1,6 +1,15 @@
 import { heroHighlights, heroRoles, socialLinks } from '../data/portfolio';
 import useTypewriter from '../hooks/useTypewriter';
 
+let profileImage;
+try {
+  const mod = import.meta.glob('../assets/profile.{jpg,jpeg,png,webp}', { eager: true });
+  const entries = Object.values(mod);
+  if (entries.length > 0) profileImage = entries[0].default;
+} catch {
+  // no profile image found — fallback will be used
+}
+
 const profileFallback = `data:image/svg+xml;utf8,${encodeURIComponent(`
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 680">
     <defs>
@@ -16,7 +25,7 @@ const profileFallback = `data:image/svg+xml;utf8,${encodeURIComponent(`
     <rect width="600" height="680" rx="64" fill="url(#bg)"/>
     <circle cx="300" cy="250" r="108" fill="#2b241f" stroke="url(#accent)" stroke-width="8"/>
     <path d="M145 555c26-102 96-155 155-155s129 53 155 155" fill="#2b241f" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
-    <text x="50%" y="620" text-anchor="middle" fill="#f0ece4" font-size="30" font-family="DM Sans, Arial, sans-serif">Add src/assets/profile.jpg</text>
+    <text x="50%" y="600" text-anchor="middle" fill="#c9a96e" font-size="44" font-weight="600" font-family="DM Sans, Arial, sans-serif">VA</text>
   </svg>
 `)}`;
 
@@ -92,7 +101,7 @@ const Hero = () => {
           <div className="hero-image-frame">
             <img
               className="hero-image"
-              src="/src/assets/profile.jpg"
+              src={profileImage || profileFallback}
               alt="Portrait of Vanshika Agarwal"
               loading="lazy"
               onError={(event) => {
@@ -101,7 +110,7 @@ const Hero = () => {
               }}
             />
           </div>
-          <p className="hero-image-note">Add your photo in src/assets/profile.jpg for a personal touch.</p>
+
         </div>
       </div>
     </section>
