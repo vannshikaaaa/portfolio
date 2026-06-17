@@ -293,8 +293,7 @@ a {
 
 .hero-highlight-pill,
 .project-status,
-.project-live-soon,
-.hero-image-note {
+.project-live-soon {
   color: var(--muted);
 }
 
@@ -354,12 +353,6 @@ a {
   border-radius: inherit;
   background: linear-gradient(160deg, #29211a, #151515);
   border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.hero-image-note {
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 0.95rem;
 }
 
 .about-grid,

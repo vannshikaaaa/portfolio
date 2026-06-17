@@ -58,7 +58,7 @@ export const projects = [
     description:
       'A modern single-page portfolio built to highlight projects, technical skills, achievements, and contact details with smooth interactions, responsive layouts, and polished visual design.',
     tech: ['React', 'Vite', 'CSS3', 'Responsive Design'],
-    github: 'https://github.com/vannshikaaaa',
+    github: 'https://github.com/vannshikaaaa/portfolio',
     live: '',
   },
   {
