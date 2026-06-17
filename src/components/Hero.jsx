@@ -1,6 +1,15 @@
 import { heroHighlights, heroRoles, socialLinks } from '../data/portfolio';
 import useTypewriter from '../hooks/useTypewriter';
 
+let profileImage;
+try {
+  const mod = import.meta.glob('../assets/profile.{jpg,jpeg,png,webp}', { eager: true });
+  const entries = Object.values(mod);
+  if (entries.length > 0) profileImage = entries[0].default;
+} catch {
+  // no profile image found — fallback will be used
+}
+
 const profileFallback = `data:image/svg+xml;utf8,${encodeURIComponent(`
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 680">
     <defs>
@@ -92,7 +101,7 @@ const Hero = () => {
           <div className="hero-image-frame">
             <img
               className="hero-image"
-              src="/profile.jpg"
+              src={profileImage || profileFallback}
               alt="Portrait of Vanshika Agarwal"
               loading="lazy"
               onError={(event) => {
